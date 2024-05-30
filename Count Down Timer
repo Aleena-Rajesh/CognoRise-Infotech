@@ -1,0 +1,237 @@
+import tkinter as tk
+from tkinter import messagebox
+import time
+
+class CountdownTimer:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Countdown Timer")
+        
+        self.label = tk.Label(root, font=('Helvetica', 48))
+        self.label.pack(pady=20)
+        
+        self.hours_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.hours_entry.pack(side=tk.LEFT, padx=5)
+        self.minutes_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.minutes_entry.pack(side=tk.LEFT, padx=5)
+        self.seconds_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.seconds_entry.pack(side=tk.LEFT, padx=5)
+        
+        self.start_button = tk.Button(root, text="Start", command=self.start_timer)
+        self.start_button.pack(pady=10)
+        
+        self.stop_button = tk.Button(root, text="Stop", command=self.stop_timer, state=tk.DISABLED)
+        self.stop_button.pack(pady=5)
+        
+        self.total_seconds = 0
+        self.timer_running = False
+    
+    def start_timer(self):
+        try:
+            hours = int(self.hours_entry.get() or 0)
+            minutes = int(self.minutes_entry.get() or 0)
+            seconds = int(self.seconds_entry.get() or 0)
+            if hours < 0 or minutes < 0 or seconds < 0:
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Error", "Please enter valid non-negative integers.")
+            return
+        
+        self.total_seconds = hours * 3600 + minutes * 60 + seconds
+        if self.total_seconds == 0:
+            messagebox.showerror("Error", "Please enter a non-zero time.")
+            return
+        
+        self.timer_running = True
+        self.stop_button.config(state=tk.NORMAL)
+        self.start_button.config(state=tk.DISABLED)
+        self.run_timer()
+    
+    def run_timer(self):
+        while self.total_seconds > 0 and self.timer_running:
+            hours = self.total_seconds // 3600
+            minutes = (self.total_seconds % 3600) // 60
+            seconds = self.total_seconds % 60
+            
+            self.label.config(text=f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+            self.root.update()
+            time.sleep(1)
+            self.total_seconds -= 1
+        
+        if self.timer_running:
+            self.timer_running = False
+            self.stop_button.config(state=tk.DISABLED)
+            self.start_button.config(state=tk.NORMAL)
+            self.label.config(text="Time's up!")
+            messagebox.showinfo("Timer", "Time's up!")
+    
+    def stop_timer(self):
+        self.timer_running = False
+        self.stop_button.config(state=tk.DISABLED)
+        self.start_button.config(state=tk.NORMAL)
+
+def main():
+    root = tk.Tk()
+    app = CountdownTimer(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+import tkinter as tk
+from tkinter import messagebox
+import time
+
+class CountdownTimer:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Countdown Timer")
+        
+        self.label = tk.Label(root, font=('Helvetica', 48))
+        self.label.pack(pady=20)
+        
+        self.hours_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.hours_entry.pack(side=tk.LEFT, padx=5)
+        self.minutes_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.minutes_entry.pack(side=tk.LEFT, padx=5)
+        self.seconds_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.seconds_entry.pack(side=tk.LEFT, padx=5)
+        
+        self.start_button = tk.Button(root, text="Start", command=self.start_timer)
+        self.start_button.pack(pady=10)
+        
+        self.stop_button = tk.Button(root, text="Stop", command=self.stop_timer, state=tk.DISABLED)
+        self.stop_button.pack(pady=5)
+        
+        self.total_seconds = 0
+        self.timer_running = False
+    
+    def start_timer(self):
+        try:
+            hours = int(self.hours_entry.get() or 0)
+            minutes = int(self.minutes_entry.get() or 0)
+            seconds = int(self.seconds_entry.get() or 0)
+            if hours < 0 or minutes < 0 or seconds < 0:
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Error", "Please enter valid non-negative integers.")
+            return
+        
+        self.total_seconds = hours * 3600 + minutes * 60 + seconds
+        if self.total_seconds == 0:
+            messagebox.showerror("Error", "Please enter a non-zero time.")
+            return
+        
+        self.timer_running = True
+        self.stop_button.config(state=tk.NORMAL)
+        self.start_button.config(state=tk.DISABLED)
+        self.run_timer()
+    
+    def run_timer(self):
+        while self.total_seconds > 0 and self.timer_running:
+            hours = self.total_seconds // 3600
+            minutes = (self.total_seconds % 3600) // 60
+            seconds = self.total_seconds % 60
+            
+            self.label.config(text=f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+            self.root.update()
+            time.sleep(1)
+            self.total_seconds -= 1
+        
+        if self.timer_running:
+            self.timer_running = False
+            self.stop_button.config(state=tk.DISABLED)
+            self.start_button.config(state=tk.NORMAL)
+            self.label.config(text="Time's up!")
+            messagebox.showinfo("Timer", "Time's up!")
+    
+    def stop_timer(self):
+        self.timer_running = False
+        self.stop_button.config(state=tk.DISABLED)
+        self.start_button.config(state=tk.NORMAL)
+
+def main():
+    root = tk.Tk()
+    app = CountdownTimer(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+import tkinter as tk
+from tkinter import messagebox
+import time
+
+class CountdownTimer:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Countdown Timer")
+        
+        self.label = tk.Label(root, font=('Helvetica', 48))
+        self.label.pack(pady=20)
+        
+        self.hours_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.hours_entry.pack(side=tk.LEFT, padx=5)
+        self.minutes_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.minutes_entry.pack(side=tk.LEFT, padx=5)
+        self.seconds_entry = tk.Entry(root, font=('Helvetica', 24), width=5)
+        self.seconds_entry.pack(side=tk.LEFT, padx=5)
+        
+        self.start_button = tk.Button(root, text="Start", command=self.start_timer)
+        self.start_button.pack(pady=10)
+        
+        self.stop_button = tk.Button(root, text="Stop", command=self.stop_timer, state=tk.DISABLED)
+        self.stop_button.pack(pady=5)
+        
+        self.total_seconds = 0
+        self.timer_running = False
+    
+    def start_timer(self):
+        try:
+            hours = int(self.hours_entry.get() or 0)
+            minutes = int(self.minutes_entry.get() or 0)
+            seconds = int(self.seconds_entry.get() or 0)
+            if hours < 0 or minutes < 0 or seconds < 0:
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Error", "Please enter valid non-negative integers.")
+            return
+        
+        self.total_seconds = hours * 3600 + minutes * 60 + seconds
+        if self.total_seconds == 0:
+            messagebox.showerror("Error", "Please enter a non-zero time.")
+            return
+        
+        self.timer_running = True
+        self.stop_button.config(state=tk.NORMAL)
+        self.start_button.config(state=tk.DISABLED)
+        self.run_timer()
+    
+    def run_timer(self):
+        while self.total_seconds > 0 and self.timer_running:
+            hours = self.total_seconds // 3600
+            minutes = (self.total_seconds % 3600) // 60
+            seconds = self.total_seconds % 60
+            
+            self.label.config(text=f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+            self.root.update()
+            time.sleep(1)
+            self.total_seconds -= 1
+        
+        if self.timer_running:
+            self.timer_running = False
+            self.stop_button.config(state=tk.DISABLED)
+            self.start_button.config(state=tk.NORMAL)
+            self.label.config(text="Time's up!")
+            messagebox.showinfo("Timer", "Time's up!")
+    
+    def stop_timer(self):
+        self.timer_running = False
+        self.stop_button.config(state=tk.DISABLED)
+        self.start_button.config(state=tk.NORMAL)
+
+def main():
+    root = tk.Tk()
+    app = CountdownTimer(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
